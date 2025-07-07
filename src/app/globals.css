@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-rosewater: var(--rosewater);
+  --color-flamingo: var(--flamingo);
+  --color-pink: var(--pink);
+  --color-mauve: var(--mauve);
+  --color-red: var(--red);
+  --color-maroon: var(--maroon);
+  --color-peach: var(--peach);
+  --color-yellow: var(--yellow);
+  --color-green: var(--green);
+  --color-teal: var(--teal);
+  --color-sky: var(--sky);
+  --color-sapphire: var(--sapphire);
+  --color-blue: var(--blue);
+  --color-lavender: var(--lavender);
+
+  --color-text: var(--text);
+  --color-subtext-1: var(--subtext-1);
+  --color-subtext-0: var(--subtext-0);
+
+  --color-overlay-2: var(--overlay-2);
+  --color-overlay-1: var(--overlay-1);
+  --color-overlay-0: var(--overlay-0);
+
+  --color-surface-2: var(--surface-2);
+  --color-surface-1: var(--surface-1);
+  --color-surface-0: var(--surface-0);
+
+  --color-base: var(--base);
+  --color-mantle: var(--mantle);
+  --color-crust: var(--crust);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Catppuccin Macchiato Theme */
+  --rosewater: #f4dbd6;
+  --flamingo: #f0c6c6;
+  --pink: #f5bde6;
+  --mauve: #c6a0f6;
+  --red: #ed8796;
+  --maroon: #ee99a0;
+  --peach: #f5a97f;
+  --yellow: #eed49f;
+  --green: #a6da95;
+  --teal: #8bd5ca;
+  --sky: #91d7e3;
+  --sapphire: #7dc4e4;
+  --blue: #8aadf4;
+  --lavender: #b7bdf8;
+
+  --text: #cad3f5;
+  --subtext-1: #b8c0e0;
+  --subtext-0: #a5adcb;
+
+  --overlay-2: #939ab7;
+  --overlay-1: #8087a2;
+  --overlay-0: #6e738d;
+
+  --surface-2: #5b6078;
+  --surface-1: #494d64;
+  --surface-0: #363a4f;
+
+  --base: #24273a;
+  --mantle: #1e2030;
+  --crust: #181926;
+}
+
+@layer base {
+  body {
+    @apply bg-base text-text;
+  }
+}
