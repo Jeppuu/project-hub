@@ -79,4 +79,21 @@
   body {
     @apply bg-base text-text;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-pixelify-sans), monospace;
+  }
+  .gradient-to-r-custom {
+    @apply bg-gradient-to-r from-lavender to-blue;
+  }
+  .drop-shadow-solid-crust {
+    @apply drop-shadow-[4px_4px_0px_var(--crust)];
+  }
+  .font-pixel {
+    font-family: var(--font-pixelify-sans), monospace;
+  }
 }
