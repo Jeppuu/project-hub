@@ -27,16 +27,16 @@ const TodoInput = ({ onAdd }: TodoInputProps) => {
   };
 
   return (
-    <div className="w-[80%] max-w-xl mx-auto flex flex-col gap-3 items-center bg-surface-0 border-2 border-lavender rounded-xl p-6 drop-shadow-solid-crust">
+    <div className="w-full max-w-xl mx-auto flex flex-col gap-3 items-center bg-surface-0 border-2 border-crust rounded-xl p-6 drop-shadow-solid-crust">
       <input
-        className="w-full font-pixel text-lg px-2 pb-2 border-0 border-b-1 border-pink/80 bg-transparent text-text transition focus:outline-none"
+        className="w-full font-pixel text-lg px-2 pb-2 border-0 border-b-1 border-lavender bg-transparent text-text transition focus:outline-none"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         onKeyDown={onEnter}
         placeholder="What do you need to do?"
       />
       <textarea
-        className="w-full px-2 pb-2 border-0 border-b-1 border-pink/80 bg-transparent text-text resize-none transition focus:outline-none"
+        className="w-full px-2 pb-2 border-0 border-b-1 border-lavender bg-transparent text-text resize-none transition focus:outline-none"
         value={body}
         onChange={(e) => setBody(e.target.value)}
         onKeyDown={onEnter}
@@ -48,7 +48,7 @@ const TodoInput = ({ onAdd }: TodoInputProps) => {
         type="text"
         inputMode="numeric"
         pattern="[0-9]*"
-        className="w-full px-2 pb-2 border-0 border-b-1 border-pink/80 bg-transparent text-text focus:outline-none transition"
+        className="w-full px-2 pb-2 border-0 border-b-1 border-lavender bg-transparent text-text focus:outline-none transition"
         value={timeEstimate === 0 ? "" : timeEstimate}
         onChange={(e) => {
           const val = e.target.value.replace(/[^0-9]/g, "");
