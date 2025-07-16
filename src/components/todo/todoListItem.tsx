@@ -30,7 +30,7 @@ const TodoListItem = ({ listItem, onRemove, onToggleCompleted }: Props) => {
           onRemove();
         }}
         aria-label="Remove"
-        className="absolute top-2 right-2 border-2 border-crust rounded-full bg-maroon drop-shadow-solid-crust hover:bg-red cursor-pointer z-30"
+        className="absolute top-2 right-2 border-2 border-crust rounded-lg bg-maroon drop-shadow-solid-crust hover:bg-red cursor-pointer z-30"
       >
         <Trash2 className="h-4 w-4 text-crust" />
       </Button>

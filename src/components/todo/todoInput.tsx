@@ -27,7 +27,7 @@ const TodoInput = ({ onAdd }: TodoInputProps) => {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto flex flex-col gap-3 items-center bg-surface-0 border-2 border-crust rounded-xl p-6 drop-shadow-solid-crust">
+    <div className="w-full max-w-xl mx-auto flex flex-col gap-3 items-center">
       <input
         className="w-full font-pixel text-lg px-2 pb-2 border-0 border-b-1 border-lavender bg-transparent text-text transition focus:outline-none"
         value={title}

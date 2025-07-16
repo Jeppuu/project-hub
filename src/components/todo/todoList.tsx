@@ -8,6 +8,14 @@ type Props = {
 };
 
 const TodoList = ({ todoItems, onRemove, onToggleCompleted }: Props) => {
+  if (todoItems.length === 0) {
+    return (
+      <div className="text-text font-pixel text-center py-4 tracking-wide">
+        Oh, your list is empty! Add a new task!
+      </div>
+    );
+  }
+
   return (
     <ul className="space-y-2">
       {todoItems.map((item) => (

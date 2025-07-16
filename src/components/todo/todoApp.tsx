@@ -3,6 +3,14 @@
 import { useState, useEffect, useCallback, memo } from "react";
 import TodoInput from "./todoInput";
 import TodoList from "./todoList";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogClose,
+} from "@radix-ui/react-dialog";
+import { DialogHeader } from "../ui/dialog";
 
 export type TodoItem = {
   id: string;
@@ -17,6 +25,7 @@ const STORAGE_KEY = "todos";
 
 const TodoApp = memo(() => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
+  const [open, setOpen] = useState(false);
 
   // Load from localStorage
   useEffect(() => {
@@ -37,6 +46,7 @@ const TodoApp = memo(() => {
     (item: Omit<TodoItem, "id" | "completed">) => {
       const newItem = { ...item, id: Date.now().toString(), completed: false };
       setTodoItems((prev) => [...prev, newItem]);
+      setOpen(false);
     },
     []
   );
@@ -55,7 +65,29 @@ const TodoApp = memo(() => {
 
   return (
     <div className="max-w-xl w-full mx-auto flex flex-col gap-4">
-      <TodoInput onAdd={addTodoItem} />
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <button className="self-center mb-2 px-6 py-2 rounded-xl gradient-to-r-custom text-crust font-pixel border-2 border-lavender drop-shadow-solid-crust hover:scale-105 transition cursor-pointer">
+            + Add new task
+          </button>
+        </DialogTrigger>
+        <DialogContent className="w-full max-w-xl bg-surface-0 border-2 border-crust rounded-xl p-6 drop-shadow-solid-crust">
+          <DialogHeader>
+            <DialogTitle className="font-pixel text-xl p-2 text-center">
+              Add a new task
+            </DialogTitle>
+          </DialogHeader>
+          <TodoInput onAdd={addTodoItem} />
+          <DialogClose asChild>
+            <button
+              className="absolute top-2 right-2 px-3 py-1 rounded-lg bg-maroon text-crust font-bold border-2 border-crust drop-shadow-solid-crust hover:bg-red transition cursor-pointer"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </DialogClose>
+        </DialogContent>
+      </Dialog>
       <TodoList
         todoItems={todoItems}
         onRemove={removeTodoItem}
