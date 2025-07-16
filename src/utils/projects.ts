@@ -2,7 +2,8 @@ export const projects = [
   {
     id: "todo",
     title: "Todo App",
-    description: "A simple todo app built on vanilla js.",
+    description:
+      "A simple todo app built on React and Tailwind CSS. You can add, remove, and mark tasks as completed. Each task has a title, body and time estimate. Tasks are stored in localStorage.",
     href: "/projects/todo",
     imageSrc: "/images/projects/todo.png",
   },
