@@ -96,6 +96,9 @@
   .font-pixel {
     font-family: var(--font-pixelify-sans), monospace;
   }
+  .font-vt323 {
+    font-family: var(--font-vt323), monospace;
+  }
 
   @keyframes confetti-pop {
     0% {
