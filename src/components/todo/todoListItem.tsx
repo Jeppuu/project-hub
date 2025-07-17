@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { TodoItem } from "./todoApp";
+import { useState, useEffect } from "react";
 
 type Props = {
   listItem: TodoItem;
@@ -8,7 +9,38 @@ type Props = {
   onToggleCompleted: () => void;
 };
 
+const congratulatoryMessages = [
+  "Yay!",
+  "Hooray!",
+  "You did it!",
+  "Great job!",
+  "Well done!",
+  "Awesome!",
+  "Keep it up!",
+  "Fantastic!",
+  "You're amazing!",
+  "Bravo!",
+  "Way to go!",
+  "You crushed it!",
+];
+
+const getRandomMessage = () => {
+  return congratulatoryMessages[
+    Math.floor(Math.random() * congratulatoryMessages.length)
+  ];
+};
+
 const TodoListItem = ({ listItem, onRemove, onToggleCompleted }: Props) => {
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => {
+    if (listItem.completed) {
+      setShowConfetti(true);
+      const timer = setTimeout(() => setShowConfetti(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [listItem.completed]);
+
   return (
     <li
       onClick={onToggleCompleted}
@@ -22,6 +54,20 @@ const TodoListItem = ({ listItem, onRemove, onToggleCompleted }: Props) => {
       {listItem.completed && (
         <div className="absolute inset-0 rounded-xl bg-green/40 pointer-events-none z-10" />
       )}
+
+      {/* Confetti animation */}
+      {showConfetti && (
+        <span
+          className="flex flex-col text-center gap-2 absolute left-1/2 top-1/2 z-40 text-4xl animate-confetti-pop pointer-events-none"
+          style={{ transform: "translate(-50%, -60%)" }}
+        >
+          🎉
+          <span className="text-text font-pixel text-sm">
+            {getRandomMessage()}
+          </span>
+        </span>
+      )}
+
       <Button
         variant="ghost"
         size="sm"
