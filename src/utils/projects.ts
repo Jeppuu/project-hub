@@ -9,8 +9,9 @@ export const projects = [
   },
   {
     id: "calculator",
-    title: "React Calculator",
-    description: "A calculator with basic functions build on react.",
+    title: "Basic Calculator",
+    description:
+      "A calculator build on react and Tailwind CSS, with basic functions like addition, subtraction, multiplication and division.",
     href: "/projects/calculator",
     imageSrc: "/images/projects/calculator.png",
   },
