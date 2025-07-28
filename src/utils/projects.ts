@@ -11,14 +11,15 @@ export const projects = [
     id: "calculator",
     title: "Basic Calculator",
     description:
-      "A calculator build on react and Tailwind CSS, with basic functions like addition, subtraction, multiplication and division.",
+      "A calculator built with React and Tailwind CSS, with basic functions like addition, subtraction, multiplication and division.",
     href: "/projects/calculator",
     imageSrc: "/images/projects/calculator.png",
   },
   {
     id: "rgb",
-    title: "🎨 RGB Guess",
-    description: "Guess the correct color from the RGB-color-code!",
+    title: "🎨 RGB Guess Game",
+    description:
+      "Guess the correct color from the RGB-color-code! A fun game to test your color recognition skills, built with React and Tailwind CSS.",
     href: "/projects/rgb-guess",
     imageSrc: "/images/projects/game.png",
   },

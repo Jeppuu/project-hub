@@ -1,9 +1,10 @@
 import React from "react";
 import Header from "./header";
 
+export const mainBgColor = "bg-surface-1";
+const borderColor = "border-crust";
+
 const Layout = React.memo(({ children }: { children: React.ReactNode }) => {
-  const mainBgColor = "bg-surface-1";
-  const borderColor = "border-crust";
   return (
     <div className="min-h-screen ">
       <Header />

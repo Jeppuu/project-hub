@@ -37,6 +37,21 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --color-primary: var(--blue);
+  --color-primary-foreground: var(--crust);
+  --color-secondary: var(--lavender);
+  --color-secondary-foreground: var(--crust);
+  --color-accent: var(--peach);
+  --color-accent-foreground: var(--crust);
+  --color-destructive: var(--red);
+  --color-destructive-foreground: var(--crust);
+  --color-muted: var(--overlay-1);
+  --color-muted-foreground: var(--subtext-1);
+  --color-background: var(--base);
+  --color-foreground: var(--text);
+  --color-input: var(--surface-1);
+  --color-ring: var(--crust);
 }
 
 :root {
@@ -73,6 +88,22 @@
   --base: #24273a;
   --mantle: #1e2030;
   --crust: #181926;
+
+  /* shadcn palette mapped to Catppuccin */
+  --primary: var(--blue);
+  --primary-foreground: var(--crust);
+  --secondary: var(--lavender);
+  --secondary-foreground: var(--crust);
+  --accent: var(--peach);
+  --accent-foreground: var(--crust);
+  --destructive: var(--red);
+  --destructive-foreground: var(--crust);
+  --muted: var(--overlay-1);
+  --muted-foreground: var(--subtext-1);
+  --background: var(--base);
+  --foreground: var(--text);
+  --input: var(--surface-1);
+  --ring: var(--crust);
 }
 
 @layer base {
