@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./header";
+import Link from "next/link";
 
 export const mainBgColor = "bg-surface-1";
 const borderColor = "border-crust";
@@ -14,9 +15,11 @@ const Layout = React.memo(({ children }: { children: React.ReactNode }) => {
         <div
           className={`p-4 relative top-0 left-0 w-full h-auto gradient-to-r-custom rounded-t-lg shadow-md border-b-2 ${borderColor} gradient-to-r-custom flex flex-row gap-2 items-start`}
         >
-          <div
-            className={`p-2 rounded-full bg-red border-2 ${borderColor} shadow-md`}
-          ></div>
+          <Link href="/">
+            <div
+              className={`p-2 rounded-full bg-red border-2 ${borderColor} shadow-md`}
+            ></div>
+          </Link>
           <div
             className={`p-2 rounded-full bg-yellow border-2 ${borderColor} shadow-md`}
           ></div>
