@@ -6,6 +6,7 @@ import RgbSquares from "./rgbSquares";
 import RgbResetButton from "./rgbResetButton";
 import ProgressLoader from "./ProgressLoader";
 import ScoreDisplay from "./scoreDisplay";
+import ConfettiCelebration from "../confettiCelebration";
 
 export type RgbGameMode = "easy" | "hard";
 
@@ -41,6 +42,8 @@ const RgbGuessGame = React.memo(() => {
   const [message, setMessage] = useState<string>("");
   const [headerColor, setHeaderColor] = useState<string>(defaultHeaderColor);
   const [gameOver, setGameOver] = useState(false);
+
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
@@ -106,6 +109,8 @@ const RgbGuessGame = React.memo(() => {
     (color: string, idx: number) => {
       if (gameOver) return;
       if (color === pickedColor) {
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 1200); // Show confetti
         setMessage("Correct!");
         setHeaderColor(color);
         setColors(colors.map(() => color));
@@ -168,6 +173,7 @@ const RgbGuessGame = React.memo(() => {
         onSquareClick={handleSquareClick}
         disabled={gameOver}
       />
+      {showConfetti && <ConfettiCelebration show={true} message="Correct!" />}
     </div>
   );
 });
