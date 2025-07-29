@@ -8,11 +8,12 @@ import ProgressLoader from "./ProgressLoader";
 import ScoreDisplay from "./scoreDisplay";
 import ConfettiCelebration from "../confettiCelebration";
 
-export type RgbGameMode = "easy" | "hard";
+export type RgbGameMode = "easy" | "hard" | "expert";
 
 const gameModes: Record<RgbGameMode, number> = {
   easy: 3,
   hard: 6,
+  expert: 9,
 };
 
 const defaultHeaderColor = "gradient";
@@ -29,6 +30,27 @@ const getRandomRGBValue = () => {
 
 const generateRandomColors = (num: number) => {
   return Array.from({ length: num }, getRandomRGBValue);
+};
+
+const generateExpertColors = (num: number) => {
+  // Base color
+  const baseR = Math.floor(Math.random() * 256);
+  const baseG = Math.floor(Math.random() * 256);
+  const baseB = Math.floor(Math.random() * 256);
+
+  const variation = 80;
+
+  return Array.from({ length: num }, () => {
+    // Randomly vary each RGB component within the range of -variation to +variation
+    const deltaR = Math.floor(Math.random() * (variation * 2 + 1)) - variation;
+    const deltaG = Math.floor(Math.random() * (variation * 2 + 1)) - variation;
+    const deltaB = Math.floor(Math.random() * (variation * 2 + 1)) - variation;
+
+    const r = Math.max(0, Math.min(255, baseR + deltaR));
+    const g = Math.max(0, Math.min(255, baseG + deltaG));
+    const b = Math.max(0, Math.min(255, baseB + deltaB));
+    return `rgb(${r}, ${g}, ${b})`;
+  });
 };
 
 const pickColor = (colors: string[]) => {
@@ -48,24 +70,34 @@ const RgbGuessGame = React.memo(() => {
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
+  const [expertUnlocked, setExpertUnlocked] = useState(false);
 
   const [timer, setTimer] = useState(0); // seconds elapsed
   const [timerActive, setTimerActive] = useState(false);
-  const [bestScore, setBestScore] = useState(() => {
-    // Load from localStorage to persist
-    if (typeof window !== "undefined") {
-      return Number(localStorage.getItem("rgb-best-score") || 0);
+  const [bestScore, setBestScore] = useState(0);
+
+  // Get best score from local storage
+  useEffect(() => {
+    const storedBestScore = localStorage.getItem("rgb-best-score");
+    if (storedBestScore) {
+      setBestScore(Number(storedBestScore));
     }
-    return 0;
-  });
+  }, []);
 
   // Reset game state
   const resetGame = useCallback(() => {
-    const numSquares = mode === "easy" ? gameModes.easy : gameModes.hard;
-    const newColors = generateRandomColors(numSquares);
-    const newPicked = pickColor(newColors);
-    setColors(newColors);
-    setPickedColor(newPicked);
+    if (mode === "expert") {
+      const newColors = generateExpertColors(gameModes.expert);
+      const newPicked = pickColor(newColors);
+      setColors(newColors);
+      setPickedColor(newPicked);
+    } else {
+      const numSquares = mode === "easy" ? gameModes.easy : gameModes.hard;
+      const newColors = generateRandomColors(numSquares);
+      const newPicked = pickColor(newColors);
+      setColors(newColors);
+      setPickedColor(newPicked);
+    }
     setMessage("");
     setHeaderColor(defaultHeaderColor);
     setGameOver(false);
@@ -74,6 +106,13 @@ const RgbGuessGame = React.memo(() => {
   useEffect(() => {
     resetGame();
   }, [resetGame]);
+
+  // Unlock expert mode after a certain streak or score
+  useEffect(() => {
+    if (bestStreak >= 5 || score >= 100) {
+      setExpertUnlocked(true);
+    }
+  }, [bestStreak, score]);
 
   // Start new timer when a new color is picked
   useEffect(() => {
@@ -164,9 +203,13 @@ const RgbGuessGame = React.memo(() => {
         message={message}
         headerColor={headerColor}
       />
-      <div className="flex flex-row items-center justify-between w-full gap-2">
+      <div className="flex flex-row items-center justify-between w-full gap-2 mb-2">
         <RgbResetButton onClick={resetGame} gameOver={gameOver} />
-        <RgbModeSelector mode={mode} setMode={setMode} />
+        <RgbModeSelector
+          mode={mode}
+          setMode={setMode}
+          expertUnlocked={expertUnlocked}
+        />
       </div>
       <RgbSquares
         colors={colors}
