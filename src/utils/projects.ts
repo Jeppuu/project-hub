@@ -19,7 +19,7 @@ export const projects = [
     id: "rgb",
     title: "🎨 RGB Guess Game",
     description:
-      "Guess the correct color from the RGB-color-code! A fun game to test your color recognition skills, built with React and Tailwind CSS.",
+      "Guess the correct color from the RGB-color-code! A fun game with a timer and score tracking, built with React and Tailwind CSS.",
     href: "/projects/rgb-guess",
     imageSrc: "/images/projects/game.png",
   },
