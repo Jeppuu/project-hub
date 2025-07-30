@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardContent,
 } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+//import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import React from "react";
 
 type Project = {
@@ -37,12 +37,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <CardHeader
           className={`rounded-t-lg border-b-2 border-crust flex flex-row items-between gap-6 ${gradientClass} shadow-md`}
         >
-          <Avatar className="drop-shadow-solid-crust ring-2 ring-lavender scale-110">
+          {/* <Avatar className="drop-shadow-solid-crust ring-2 ring-lavender scale-110">
             <AvatarImage src={project.imageSrc} alt={project.title} />
             <AvatarFallback className="bg-base text-blue font-bold">
               X
             </AvatarFallback>
-          </Avatar>
+          </Avatar> */}
           <CardTitle>{project.title}</CardTitle>
         </CardHeader>
         <CardContent>
